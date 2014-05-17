@@ -1,0 +1,49 @@
+---
+
+## Role names used by the STIG spec tests:
+# router
+# ldapClient
+# ldapServer
+# nfsClient
+# nfsServer
+# sambaClient
+# VPN
+# ftpServer
+# tftpServer
+# snmpClient
+# redHatNetworkService
+
+host1.sharknet.us:
+  :roles:
+    - simple
+#   - stig
+#   - [role name from above list]
+  :networks:
+    - device_id: 0 # ethernet device ID: eth0, eth1, etc. Accepted values: 0..n
+      boot_protocol: none #Accepted values: none,dhcp. Use none for static TCP/IP configuration
+      ip_address: 192.168.1.12 #Accepted values: an IP address (no hostnames). Remove this line for dhcp systems.
+      prefix: 24 #Accepted values: netmask in CIDR notation. Remove this line for dhcp systems.
+      is_vlan: false #Accepted values: true, false. Use true for VLAN connected NICs and enter the VLAN ID below.
+      vlan_id: "" #Accepted values: "", "1..n". Enter the VLAN ID when is_vlan is true. This plus device_id identifies NICs such as "ifcfg-eth0.25"
+  :default_gateway: 192.168.1.1 #Accepted values: an IP address (no hostnames).
+  :gnomeInstalled: false #Accepted values: true, false. Set to true if GNOME is installed and you want to check its security settings.
+
+host2.sharknet.us:
+  :roles:
+    - simple
+#    - stig
+  :networks:
+    - device_id: 0
+      boot_protocol: none
+      ip_address: 192.168.1.13
+      prefix: 24
+      is_vlan: false
+      vlan_id: ""
+    - device_id: 1
+      boot_protocol: dhcp
+      is_vlan: true
+      vlan_id: "150"
+  :default_gateway: 192.168.1.1
+  :gnomeInstalled: false
+
+

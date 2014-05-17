@@ -1,0 +1,18 @@
+ipv6Enabled: false # Accepted values: true, false. Set to true to test ipv6 network settings. False will ignore them.
+rootEmailAddress: admin@your.domain.com #Accepted values: any valid email address. This is the address is mail aliases that should receive root's email.
+auditSpaceLeftInMegabytes: 75 #Accepted values: any integer greater than 0. auditd will notify you when the log only has this much space left.
+ids: aide # Accepted values: ossec, aide
+logger: rsyslog #Accepted values: rsyslog, syslog-ng
+linuxFlavor: centos #Accepted values:: redhat, centos, oracle
+
+# List your system log files here. You can add any log files whose permissions 
+# should be restricted and which you want to check as part of your audit.
+logFiles: 
+   - /dev/console
+   - /var/log/messages
+   - /var/log/secure
+   - /var/log/maillog
+   - /var/log/spooler
+   - /var/log/boot.log
+   - /var/log/cron
+   - /var/log/kern

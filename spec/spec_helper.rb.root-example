@@ -1,0 +1,30 @@
+require 'rubygems'
+require 'bundler/setup'
+require 'highline/import'
+
+require 'serverspec'
+require 'pathname'
+require 'net/ssh'
+require 'yaml'
+
+include Serverspec::Helper::Ssh
+include Serverspec::Helper::RedHat
+include Serverspec::Helper::Properties
+
+properties = YAML.load_file('properties.yml')
+
+# Point this to the right file for the environment you
+# want to test
+$environment = YAML.load_file('environment.yml') # Changeme
+password = ask("Enter login password: ") { |q| q.echo = false } #Option: comment out this line and the one below if you have SSH key access to the server and don't need a password.
+
+RSpec.configure do |c|
+  #c.filter_run_excluding :slow => true #Option: uncomment to exclude the slow yum package tests
+  c.host  = ENV['TARGET_HOST']
+  set_property properties[c.host]
+  options = Net::SSH::Config.for(c.host)
+  options[:password] = password #Option: comment out this line if you have SSH key access to the server and don't need a password.
+  user    = "root" # Changeme
+  c.ssh   = Net::SSH.start(c.host, user, options)
+  c.os    = backend.check_os
+end
