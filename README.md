@@ -1,6 +1,6 @@
-Automated Security Auditing of EL Based Linux Systems
+# Automated Security Auditing of EL Based Linux Systems #
 
-# Introduction
+## Introduction##
 This is a guide to automating a security audit of EL based Linux systems. It applies to 64bit versions of 6.5 by Red Hat, CentOS, and Oracle Linux systems. This automated security audit uses the publicly available [DISA STIG version 1 release 2](http://iase.disa.mil/stigs/os/unix/red_hat.html). The security tests are implemented using the [serverspec](http://serverspec.org/) framework. 
 
 ## Benefits
