@@ -664,7 +664,7 @@ describe "Red Hat Enterprise Linux 6 Security Technical Implementation Guide Aud
         #       # ls ~<userid>/.hushlogin
         #       If there are any "hushlogin" files on the system, this is a finding.
         expect( file('/etc/hushlogins')).not_to be_file
-        expect( command('find /home -name \'.hushlogin\'') ).to return_stdout ""
+        expect( command('find /home -maxdepth 2 -name \'.hushlogin\'') ).to return_stdout ""
         # Fix: Remove any "hushlogin" files from the system:
         #       # rm /etc/hushlogins
         #       # rm ~<userid>/.hushlogin
@@ -730,11 +730,11 @@ describe "Red Hat Enterprise Linux 6 Security Technical Implementation Guide Aud
 
     # STIG Viewer Link: http://www.stigviewer.com/check/V-38491
     it "V-38491 There must be no .rhosts or hosts.equiv files on the system." do
-        # Check: The existence of the file "/etc/hosts.equiv" or a file named ".rhosts" inside a user home directory indicates the presence of an Rsh trust relationship. 
+        # Check: The existence of the file "/etc/hosts.equiv" or a file named ".rhosts" inside a user home directory indicates the presence of an Rsh trust relationship.
         #       If these files exist, this is a finding.
         expect( file('/etc/hosts.equiv')).not_to be_file
-        expect( command('find /home -name \'.rhosts\'') ).to return_stdout ""
-        # Fix: The files "/etc/hosts.equiv" and "~/.rhosts" (in each user's home directory) list remote hosts and users that are trusted by the local system when using the rshd daemon. To remove these files, run the following command to delete them from any location. 
+        expect( command('find /home -maxdepth 2 -name \'.rhosts\'') ).to return_stdout ""
+        # Fix: The files "/etc/hosts.equiv" and "~/.rhosts" (in each user's home directory) list remote hosts and users that are trusted by the local system when using the rshd daemon. To remove these files, run the following command to delete them from any location.
         #       # rm /etc/hosts.equiv
         #       $ rm ~/.rhosts
     end
@@ -2461,10 +2461,10 @@ describe "Red Hat Enterprise Linux 6 Security Technical Implementation Guide Aud
 
     # STIG Viewer Link: http://www.stigviewer.com/check/V-38619
     it "V-38619 There must be no .netrc files on the system." do
-        # Check: To check the system for the existence of any ".netrc" files, run the following command: 
+        # Check: To check the system for the existence of any ".netrc" files, run the following command:
         #       # find /home -xdev -name .netrc
         #       If any .netrc files exist, this is a finding.
-        expect( command('find /home -xdev -name .netrc')).to return_stdout ""
+        expect( command('find /home -maxdepth 2 -xdev -name .netrc')).to return_stdout ""
         # Fix: The ".netrc" files contain login information used to auto-login into FTP servers and reside in the user's home directory. These files may contain unencrypted passwords to remote FTP servers making them susceptible to access by unauthorized users and should not be used. Any ".netrc" files should be removed.
     end
 
