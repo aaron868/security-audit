@@ -2897,8 +2897,8 @@ describe "Red Hat Enterprise Linux 6 Security Technical Implementation Guide Aud
         #       # grep "umask" /etc/profile
         #       umask 077
         #       If the above command returns no output, or if the umask is configured incorrectly, this is a finding.
-        expect( command("grep -i '^umask[[:space:]]\\+077' /etc/lprofile")).not_to return_stdout ""
-        # Fix: To ensure the default umask controlled by "/etc/profile" is set properly, add or correct the "umask" setting in "/etc/profile" to read as follows: 
+        expect( command("grep -i '^umask[[:space:]]\\+077' /etc/profile")).not_to return_stdout ""
+        # Fix: To ensure the default umask controlled by "/etc/profile" is set properly, add or correct the "umask" setting in "/etc/profile" to read as follows:
         #       umask 077
     end
 
