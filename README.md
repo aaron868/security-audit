@@ -152,4 +152,6 @@ I highly recommend that you correct the deficiencies using an automated systems 
 ## Conclusion 
 Everyone benefits from secure servers. I hope this makes it easier for you to secure yours. I would be happy to accept changes to the test via git "pull requests". If there is interest I could expand this to cover security tests from other guides as well. Please post bug reports and issues to the GitHub "issues" page. Good luck!
 
+## License
+This code is released under the BSD license.
 
